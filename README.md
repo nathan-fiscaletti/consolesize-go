@@ -1,6 +1,7 @@
 # consolesize-go
 
 [![GoDoc](https://godoc.org/github.com/nathan-fiscaletti/consolesize-go?status.svg)](https://godoc.org/github.com/nathan-fiscaletti/consolesize-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nathan-fiscaletti/consolesize-go)](https://goreportcard.com/report/github.com/nathan-fiscaletti/consolesize-go)
 
 **consolesize-go** is a library that will allow you to read the size of any console window on both **Unix** and **Windows** systems.
 
