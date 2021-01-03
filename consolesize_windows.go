@@ -1,4 +1,5 @@
 // +build windows, !unix
+
 package consolesize
 
 import (
