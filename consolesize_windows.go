@@ -39,7 +39,7 @@ func GetConsoleSize() (int, int) {
 	var info, err = getConsoleScreenBufferInfo(stdoutHandle)
 
 	if err != nil {
-		panic("could not get console screen buffer info")
+		return 0, 0
 	}
 
 	return int(info.Window.Right - info.Window.Left + 1), int(info.Window.Bottom - info.Window.Top + 1)
