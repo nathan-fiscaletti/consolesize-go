@@ -1,4 +1,5 @@
 // +build windows, !unix
+
 package consolesize
 
 import (
@@ -8,9 +9,9 @@ import (
 )
 
 type (
-	short      int16
-	word       uint16
-	small_rect struct {
+	short     int16
+	word      uint16
+	smallRect struct {
 		Left   short
 		Top    short
 		Right  short
@@ -20,11 +21,11 @@ type (
 		X short
 		Y short
 	}
-	console_screen_buffer_info struct {
+	consoleScreenBufferInfo struct {
 		Size              coord
 		CursorPosition    coord
 		Attributes        word
-		Window            small_rect
+		Window            smallRect
 		MaximumWindowSize coord
 	}
 )
@@ -39,7 +40,7 @@ func GetConsoleSize() (int, int) {
 	var info, err = getConsoleScreenBufferInfo(stdoutHandle)
 
 	if err != nil {
-		panic("could not get console screen buffer info")
+		return 0, 0
 	}
 
 	return int(info.Window.Right - info.Window.Left + 1), int(info.Window.Bottom - info.Window.Top + 1)
@@ -64,8 +65,8 @@ func getStdHandle(stdhandle int) uintptr {
 	return uintptr(handle)
 }
 
-func getConsoleScreenBufferInfo(handle uintptr) (*console_screen_buffer_info, error) {
-	var info console_screen_buffer_info
+func getConsoleScreenBufferInfo(handle uintptr) (*consoleScreenBufferInfo, error) {
+	var info consoleScreenBufferInfo
 	if err := getError(getConsoleScreenBufferInfoProc.Call(handle, uintptr(unsafe.Pointer(&info)), 0)); err != nil {
 		return nil, err
 	}
